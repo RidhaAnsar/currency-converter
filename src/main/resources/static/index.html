@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 320px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Currency Converter</h2>
+    <label>Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <label>From:</label>
+    <select id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="INR">INR</option>
+    </select>
+
+    <label>To:</label>
+    <select id="toCurrency">
+        <option value="EUR">EUR</option>
+        <option value="USD">USD</option>
+        <option value="INR">INR</option>
+    </select>
+
+    <button onclick="convertCurrency()">Convert</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+    function convertCurrency() {
+        let amount = document.getElementById("amount").value;
+        let from = document.getElementById("fromCurrency").value;
+        let to = document.getElementById("toCurrency").value;
+
+        fetch("http://localhost:8080/api/convert", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ from, to, amount })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("result").innerText =
+                `${amount} ${from} = ${data.convertedAmount} ${to}`;
+        })
+        .catch(error => {
+            document.getElementById("result").innerText = "Error: Unable to convert.";
+            console.error("Error:", error);
+        });
+    }
+</script>
+
+</body>
+</html>
