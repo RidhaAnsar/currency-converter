@@ -1,2 +1,18 @@
 # currency-converter
-a Spring Boot application that integrates with a public API to provide real-time currency conversion functionality.
+A Spring Boot application for real-time currency conversion functionality.
+Convert from one currency to another.
+Handles errors for invalid currency codes.
+Includes a simple UI for easy use.
+
+
+Installed:
+Java 21
+Maven
+Postman
+
+The project includes a simple UI to convert currencies.
+Open your browser and go to:
+http://localhost:8080/index.html
+
+Clone the project:
+git clone https://github.com/RidhaAnsar/currency-converter.git
