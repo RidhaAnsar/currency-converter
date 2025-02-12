@@ -14,6 +14,8 @@ The project includes a simple UI to convert currencies.
 Open your browser and go to:
 http://localhost:8080/index.html
 
+# Documentation
+http://localhost:8080/swagger-ui/index.html
 
 # **Clone the repositpry**
 git clone https://github.com/RidhaAnsar/currency-converter.git
